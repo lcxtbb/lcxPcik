@@ -12,6 +12,7 @@
         "src/*" // 将 '@' 映射到 'src' 目录
       ]
     },
+    "types": ["element-plus/global"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -28,5 +29,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "typings.d.ts"]
 }
