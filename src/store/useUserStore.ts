@@ -2,6 +2,8 @@
 import { reqUserInfo } from '@/api/user'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+//useinfo接口数据
+import { userResponseData } from '@/api/user/type'
 
 export const useUserStore = defineStore('useUserStore', () => {
 
@@ -15,19 +17,24 @@ export const useUserStore = defineStore('useUserStore', () => {
 
     //用户信息的初始数据
     const userAvater = ref('')
-    const userName = ref('')
+    const userInfo = ref<userResponseData>({
+        routes: [],
+        buttons: [],
+        roles: [],
+        name: '',
+        avatar: ''
+    })
 
     //获取用户信息的方法
     const getUserInfo = async () => {
         const res = await reqUserInfo()
         console.log(res)
-        if(res.code === 200) {
-            // userInfo.value.avatar = res.data.checkUser.avatar
+        if (res.code === 200) {
             userAvater.value = "src/assets/images/tx.jpg"
-            userName.value = res.data.checkUser.username
+            userInfo.value = res.data
             return 'ok'
         } else {
-            return Promise.reject(new Error('TOKEN失效哦啊'))
+            return Promise.reject(new Error(res.message))
         }
     }
 
@@ -35,21 +42,28 @@ export const useUserStore = defineStore('useUserStore', () => {
     const deleUser = () => {
         TOKEN.value = ''
         userAvater.value = ''
-        userName.value = ''
+        userInfo.value = {
+            routes: [],
+            buttons: [],
+            roles: [],
+            name: '',
+            avatar: ''
+        }
     }
+
     return {
         TOKEN,
         changeToken,
         userAvater,
-        userName,
+        userInfo,
         getUserInfo,
         deleUser
     }
 },
-{
-    persist: {                      // 启用持久化
-      storage: localStorage,        // 使用 localStorage 来存储数据
-      pick: ['TOKEN']
+    {
+        persist: {                      // 启用持久化
+            storage: localStorage,        // 使用 localStorage 来存储数据
+            pick: ['TOKEN']
+        }
     }
-  }
 ) 

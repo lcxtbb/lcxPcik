@@ -3,11 +3,11 @@ import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { storeToRefs } from "pinia";
 import { useUserStore } from "./store/useUserStore";
-import { ElMessage } from "element-plus";
+import { ElMessage } from "element-plus"; 
 
 //路由前置守卫
 router.beforeEach( async (to: any, from, next) => {
-    const { TOKEN, userName } = storeToRefs(useUserStore())
+    const { TOKEN, userInfo} = storeToRefs(useUserStore())
     const { getUserInfo, deleUser } = useUserStore()
     // console.log(TOKEN.value)
     nProgress.start()
@@ -21,7 +21,7 @@ router.beforeEach( async (to: any, from, next) => {
         if(to.name === 'login') {
             next('/')
         } else {
-            if(!userName.value) {
+            if(!userInfo.value.name) {
                 try {
                     await getUserInfo()
                     next()

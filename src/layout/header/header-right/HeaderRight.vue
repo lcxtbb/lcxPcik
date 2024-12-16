@@ -27,7 +27,7 @@ const route = useRoute()
 const router = useRouter()
 
 //从pinia拿到刷新路由,退出用户信息的方法
-const { changeRefresh } = useHeaderStore()
+const { changeRefresh, deleBread } = useHeaderStore()
 const { deleUser } = useUserStore()
 
 //刷新路由方法
@@ -49,6 +49,7 @@ const fullScreen = () => {
 //退出登录
 const loginOut = () => {
     deleUser()
+    deleBread()
     router.push({name: 'login', query: {rediect: route.path}})
 }
 </script>

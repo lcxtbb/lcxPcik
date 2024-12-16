@@ -31,8 +31,10 @@ const { refresh } = storeToRefs(useHeaderStore())
 //二级路由的状态数据
 const flag = ref<boolean>(true)
 
+//监听数据变化时候触发刷新
 watch(() => refresh.value, () => {
     flag.value = false
+    //dom更新之后重新加载
     nextTick(() => {
         flag.value = true
     })

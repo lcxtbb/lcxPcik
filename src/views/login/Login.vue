@@ -29,7 +29,7 @@ import { UserFilled, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-
+import { loginFormData } from '@/api/user/type';
 //拿到路由实例
 const router = useRouter()
 const route = useRoute()
@@ -41,7 +41,7 @@ const { changeToken } = useUserStore()
 const forms = ref()
 
 //表单数据
-const loginForm = ref({
+const loginForm = ref<loginFormData>({
     username: 'admin',
     password: '111111'
 })
@@ -61,7 +61,7 @@ const signIn = async () => {
         //当前路由的query参数
         const rediect = route.query.rediect
         //pinia存储token
-        changeToken(res.data.token as string)
+        changeToken(res.data as string)
         // changeToken('11')
         router.push(rediect as string || '/home')
         //左侧信息提示
@@ -73,7 +73,7 @@ const signIn = async () => {
     } else {
         ElNotification({
             type: 'error',
-            message: res.data.message
+            message: res.data
         })
     }
 }

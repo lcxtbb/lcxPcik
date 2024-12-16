@@ -31,6 +31,10 @@ export const useHeaderStore = defineStore('Header', () => {
             bread.value.push(val)
         }
     }
+    //退出登录清除面包屑
+    const deleBread = () => {
+        bread.value = []
+    }
 
     //二级路由刷新的初始数据
     const refresh = ref<boolean>(true)
@@ -45,6 +49,7 @@ export const useHeaderStore = defineStore('Header', () => {
         changeColl,
         bread,
         changeBread,
+        deleBread,
         refresh,
         changeRefresh
     }

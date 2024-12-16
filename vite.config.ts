@@ -22,7 +22,15 @@ export default defineConfig(({ command }) => {
 
         //配置端口
         server: {
-            port: 5176
+            port: 5176,
+            proxy: {
+                '/api': {
+                    target: 'http://sph-api.atguigu.cn',
+                    changeOrigin: true,
+                    //路径重写，api替换为空
+                    rewrite: (path) => path.replace(/^\/api/, '')
+                  }
+            }
         },
 
         //别名配置
@@ -35,11 +43,11 @@ export default defineConfig(({ command }) => {
         //cass全局变量配置
         css: {
             preprocessorOptions: {
-              scss: {
-                // javasc
-                additionalData: `@use "@/styles/variables.scss" as *;`, // 你可以根据需要修改路径
-              },
+                scss: {
+                    // javasc
+                    additionalData: `@use "@/styles/variables.scss" as *;`, // 你可以根据需要修改路径
+                },
             },
-          },
+        },
     }
 })
