@@ -5,7 +5,7 @@
         <el-button icon="Setting" circle></el-button>
         <el-dropdown :hide-on-click="false">
             <div class="right-drop">
-                <img src="../../../assets/images/tx.jpg" />
+                <img src="@/assets/images/tx.jpg" />
                 <span>admin</span>
             </div>
             <template #dropdown>

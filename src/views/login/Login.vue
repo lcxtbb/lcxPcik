@@ -136,12 +136,6 @@ const getTime = (): '上午' | '下午' | '晚上' => {
                 box-shadow: inset 2px 2px 7px rgb(132, 129, 129), inset -4px -4px 12px #ffffff;
             }
         }
-
-        
-
     }
-
-
-
 }
 </style>
