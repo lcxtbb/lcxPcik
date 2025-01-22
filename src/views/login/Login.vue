@@ -54,6 +54,8 @@ const rules = {
 
 //登录验证
 const signIn = async () => {
+    // console.log(111)
+    router.push('/home')
     await forms.value.validate() //等待验证通过
     const res = await reqLogin(loginForm.value)
     console.log(res)

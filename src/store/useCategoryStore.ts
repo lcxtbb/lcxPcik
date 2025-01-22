@@ -24,7 +24,7 @@ export const useCategoryStore = defineStore('category', () => {
     //分类对应的属性数据
     const attrList = ref<AttrList>([])
 
-    //卡片组件展示的不同样式（0 展示 table，1展示添加的页面）
+    //attr 卡片组件展示的不同样式（0 展示 table，1展示添加的页面）
     const scene = ref<number>(0)
 
     //获取一级分类数据
@@ -81,7 +81,7 @@ export const useCategoryStore = defineStore('category', () => {
         attrList.value = []
     }
 
-    //获取分类的对应的属性对象
+    //获取attr分类的对应的属性对象数据
     const getAttr = async () => {
         const res = await reqAttr(c1Id.value, c2Id.value, c3Id.value)
         if (res.code === 200) {
@@ -90,7 +90,7 @@ export const useCategoryStore = defineStore('category', () => {
         }
     }
 
-    //修改卡片组件对应的数据
+    // attr 修改卡片组件对应的数据
     const changeScene = (val: number) => {
         scene.value = val
     } 

@@ -29,7 +29,8 @@ export interface CategoryResponseData extends ResponseData {
 export interface AttrValue {
     id?: number,
     valueName: string,
-    attrId?: number
+    attrId?: number,
+    flag?: boolean
 }
 
 //属性值的数组ts类型

@@ -13,7 +13,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="三级分类">
-                    <el-select placeholder="请选择" style="width: 240px" v-model="c3Id" @change="changeC3Id" :disabled="scene === 0 ? false : true">
+                    <el-select placeholder="请选择" style="width: 240px" v-model="c3Id" :disabled="scene === 0 ? false : true">
                         <el-option v-for="c3 in c3Arr" :key="c3.id" :label="c3.name" :value="c3.id"></el-option>
                     </el-select>
                 </el-form-item>
@@ -28,7 +28,7 @@ import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
 //从pinia 中拿到数据和方法
-const { getC1Arr, getC2Arr, getC3Arr, clearCategorry, getAttr, clearAllData } = useCategoryStore()
+const { getC1Arr, getC2Arr, getC3Arr, clearCategorry, clearAllData } = useCategoryStore()
 const { c1Arr, c2Arr, c3Arr, c1Id, c2Id, c3Id, scene } = storeToRefs(useCategoryStore())
 
 //一级分类id改变的回调函数
@@ -49,12 +49,12 @@ const changeC2Id = () => {
     clearCategorry()
 }
 
-//三级分类id改变的回调函数
-const  changeC3Id = () => {
-    //通知 pinia 获得对应的属性数据
-    getAttr()
-    // console.log(c1Id.value, c2Id.value, c3Id.value)
-}
+// //三级分类id改变的回调函数
+// const  changeC3Id = () => {
+//     //通知 pinia 获得对应的属性数据
+//     // getAttr()
+//     // console.log(c1Id.value, c2Id.value, c3Id.value)
+// }
 
 //生命周期
 onMounted(() => {
